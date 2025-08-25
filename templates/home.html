@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Fast Food Restaurant{% endblock %}
+
+{% block start %}
+  <style>
+
+    .reviews-container {
+  display: flex;             /* makes them side by side */
+  justify-content: center;   /* centers them horizontally */
+  gap: 20px;                 /* spacing between reviews */
+  flex-wrap: wrap;           /* allows wrapping on small screens */
+}
+
+.divi-element {
+  background-color: black;
+  text-align: center;
+  border-radius: 20%;        /* makes it round */
+  color: yellow;
+  width: 350px;              /* fixed width */
+  height: 250px;             /* fixed height (same as width for perfect circle) */
+  display: flex;             /* centers text inside */
+  flex-direction: column;    /* stacks text vertically */
+  justify-content: center;   /* centers vertically */
+  align-items: center;       /* centers horizontally */
+  margin: 20px auto;
+}
+
+      h2{
+        text-align:center;
+        padding:20px;
+      }
+    
+   </style>
+<body >
+    <section class="my-element"> 
+<div class="container mt-5 d-flex flex-column align-items-center">
+    <h1 class="h1-color "> Golden Fork</h1>
+    <p>Welcome to our foodshop! We serve food with utmost care.
+       We hope you enjoy our food and come again.</p>
+    <button class="btn btn-warning">Order Now</button>
+</div>
+</section>
+
+
+<section class="client_section layout_padding-bottom ">
+    <div class="container">
+      <div class="heading_container heading_center psudo_white_primary mb_45">
+        <h2><b>
+          What Says Our Customers</b>
+        </h2>
+      </div>
+      
+      <div class="carousel-wrap row ">
+        <div class="owl-carousel client_owl-carousel reviews-container ">
+          {% for k in review %}
+          <div class="item divi-element">
+            <div class="box">
+              <div class="detail-box">
+                <p>
+                  {{k.Description}}
+                </p>
+                <h6>
+                  {{k.User_name}}
+                </h6>
+                <p>
+                  Rating : {{k.Rating}}/5
+                </p>
+              </div>
+              {% comment %} <div class="img-box">
+                <img src="/media/{{k.Image}}" alt="{{k.Image}}" class="box-img">
+              </div> {% endcomment %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      
+    </div>
+  </section> 
+</body>
+
+{% endblock %}

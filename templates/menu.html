@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block start %}
+
+  <!-- food section -->
+   <style>
+
+    .div-element{
+      background-color:black;
+      text-align:center;
+      border-radius:50%;
+      margin-right:10px;
+
+    
+    }
+   </style>
+
+  <section class="food_section layout_padding-bottom">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Our Menu
+        </h2>
+      </div>
+<ul class="filters_menu">
+  <li class="{% if not Category %}active{% endif %}">
+    <a href="{% url 'menu' %}">All</a>
+  </li>
+  {% for cat in categories %}
+    <li class="{% if Category == cat.Category_name %}active{% endif %}">
+      <a href="{% url 'menu' %}?Category={{ cat.Category_name }}">{{ cat.Category_name }}</a>
+    </li>
+  {% endfor %}
+</ul>
+
+
+
+      <div class="filters-content">
+        <div class="row grid">
+          {% for j in items %}
+          <div class="col-sm-6 col-lg-4 all  div-element {{j.Category}}">
+            <div class="box">
+              <div>
+                <div class="img-box">
+                  <img src="{{ j.Image.url }}" alt="{{ j.Items_name }}">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    {{j.Items_name}}
+                  </h5>
+                  <p>
+                    {{j.Description}}
+                  </p>
+                  <div class="options">
+                    <h6>
+                      ${{j.Price}}
+                    </h6>
+                    <button class="btn btn-success add-to-cart" 
+                            data-item-id="{{j.id}}" 
+                            data-item-name="{{j.Items_name}}" 
+                            data-item-price="{{j.Price}}">
+                      Add to Cart
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="btn-box">
+        <a href="">
+          View More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- end food section -->
+
+{% endblock %}
