@@ -24,7 +24,7 @@ class Aboutus(models.Model):
 class Feedback(models.Model):
     User_name = models.CharField(max_length=15)
     Description = models.TextField(blank=False)
-    Rating = models.IntegerField()
+    Rating = models.IntegerField(null = True)
     Image = models.ImageField(blank=True)
 
 class BookTable(models.Model):

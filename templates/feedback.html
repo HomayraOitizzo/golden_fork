@@ -2,17 +2,18 @@
 
 {%block start%}
   
-<form class="form-card">
+<form class="form-card" method="POST">
+  {% csrf_token %}
   <div class="mb-3">
     <label for="name" class="form-label" cols="30">Name</label>
-    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+    <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" >
     <div id="emailHelp" class="form-text"></div>
       <label for="message">Your Message:</label><br>
-  <textarea id="message" name="message" rows="5" cols="40" placeholder="Describe your experience here"></textarea>
+  <textarea id="message" name="message" rows="5" cols="40" placeholder="Describe your experience here" name="message"></textarea>
   <br><br>
   </div>
  
-   <select class="form-control nice-select wide" required name="total_person">
+   <select class="form-control nice-select wide" required name="rating">
                 <option value="" disabled selected>
                   what your rating?
                 </option>

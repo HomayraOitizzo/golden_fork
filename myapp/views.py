@@ -43,7 +43,17 @@ def book(request):
     return render(request, 'book.html')
 
 def feedback(request):
-    return render('', 'feedback.html')
+    if request.method=='POST':
+        name = request.POST.get('username')
+        message = request.POST.get('message')
+        rate = request.POST.get('rate')
+
+        if name != ''and message != '' and rate != '':
+            feed = Feedback(User_name = name, Description=message, Rating=rate)
+
+            feed.save()
+    
+    return render(request, 'feedback.html')
 
 
 def login(request):
